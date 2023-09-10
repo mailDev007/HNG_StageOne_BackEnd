@@ -7,23 +7,31 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 /* ------------------------ function to get the time ------------------------ */
 const getCurrentDate = () => {
-    let dateTime = new Date();
+  let dateTime = new Date();
 
-    return dateTime;
-}
+  return dateTime;
+};
 
 const getCurrentDay = () => {
-    /* ---------------------------- days in an array ---------------------------- */
-daysArray = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  /* ---------------------------- days in an array ---------------------------- */
+  daysArray = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
 
-let currentDay = getCurrentDate().getDay();
+  let currentDay = getCurrentDate().getDay();
 
-/* ----------------- insert the day into the html index page ---------------- */
-return daysArray[currentDay]
-}
+  /* ----------------- insert the day into the html index page ---------------- */
+  return daysArray[currentDay];
+};
 
-app.get("/", (req, res) => {
-    console.log(getCurrentDate());
+app.get("/api/", (req, res) => {
+  console.log(getCurrentDate());
   let user_query = req.query;
   if (user_query.slack_name && user_query.track) {
     if (
@@ -49,7 +57,7 @@ app.get("/", (req, res) => {
       track: "",
       github_file_url: "",
       github_repo_url: "",
-      status_code: 400
+      status_code: 400,
     });
   }
 });
