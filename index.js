@@ -30,7 +30,7 @@ const getCurrentDay = () => {
   return daysArray[currentDay];
 };
 
-app.get("/api/", (req, res) => {
+app.get("/api", (req, res) => {
   console.log(getCurrentDate());
   let user_query = req.query;
   if (user_query.slack_name && user_query.track) {
