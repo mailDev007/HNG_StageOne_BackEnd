@@ -9,6 +9,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const getCurrentDate = () => {
   let dateTime = new Date();
 
+  console.log(typeof dateTime)
   return dateTime;
 };
 
@@ -38,10 +39,12 @@ app.get("/api", (req, res) => {
       user_query.slack_name.toLowerCase() == "chimakalu" &&
       user_query.track.toLowerCase() == "backend"
     ) {
+        const newDate = getCurrentDate();
+        console.log(newDate, typeof newDate);
       res.send({
         slack_name: "Chima Kalu",
         current_day: getCurrentDay(),
-        utc_time: getCurrentDate(),
+        utc_time: newDate.toISOString().replace(/\.\d+/, ''),
         track: "backend",
         github_file_url:
           "https://github.com/mailDev007/HNG_StageOne_BackEnd/blob/main/index.js",
